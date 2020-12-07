@@ -46,7 +46,12 @@
           :cardinality :db.cardinality/one}
    #_#:db{:ident       :message/source-team
           :valueType   :db.type/ref
-          :cardinality :db.cardinality/one}])
+          :cardinality :db.cardinality/one}
+
+   {:db/ident       :message/thread-broadcast?
+    :db/valueType   :db.type/boolean
+    :db/cardinality :db.cardinality/one
+    :db/doc         "Should this message be shown in the main channel, as well as in the thread, or only in the thread?"}])
 
 (def event-schema
   [#:db{:ident       :event/subtype

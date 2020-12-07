@@ -63,7 +63,7 @@
              :in '[$ ?chan-name ?day]
              :where '[[?msg :message/day ?day]
                       [?msg :message/channel ?chan]
-                      [?msg :message/user ?user]
+                      #_[?msg :message/user ?user]
                       [?chan :channel/name ?chan-name]]}
             db
             chan-name
@@ -123,8 +123,7 @@
   [db parent-tss]
   (->> (d/q {:find [pull-message-pattern]
              :in '[$ [?parent-ts ...]]
-             :where '[[?msg  :message/thread-ts ?parent-ts]]
-             }
+             :where '[[?msg :message/thread-ts ?parent-ts]]}
             db
             parent-tss)
        (map first)
